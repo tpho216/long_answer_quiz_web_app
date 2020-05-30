@@ -11,7 +11,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
 from ..decorators import teacher_required
-from ..forms import BaseAnswerInlineFormSet, QuestionForm, TeacherSignUpForm
+from ..forms import BaseAnswerInlineFormSet, QuestionForm, TeacherSignUpForm, ModelAnswerForm
 from ..models import Answer, Question, Quiz, User
 
 
@@ -170,6 +170,8 @@ def question_change(request, quiz_pk, question_pk):
     if request.method == 'POST':
         form = QuestionForm(request.POST, instance=question)
         formset = AnswerFormSet(request.POST, instance=question)
+        form_model_answer = ModelAnswerForm(request.POST)
+
         if form.is_valid() and formset.is_valid():
             with transaction.atomic():
                 form.save()
@@ -179,12 +181,14 @@ def question_change(request, quiz_pk, question_pk):
     else:
         form = QuestionForm(instance=question)
         formset = AnswerFormSet(instance=question)
+        form_model_answer = ModelAnswerForm()
 
     return render(request, 'classroom/teachers/question_change_form.html', {
         'quiz': quiz,
         'question': question,
         'form': form,
-        'formset': formset
+        'formset': formset,
+        'form_model_answer': form_model_answer
     })
 
 
