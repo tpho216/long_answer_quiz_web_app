@@ -15,11 +15,13 @@
     {% csrf_token %}
     {{ formset.management_form }}
     {{ form|crispy }}
+<p>Model Answer</p>
+{{form_model_answer}}
     <div class="card mb-3{% if formset.errors %} border-danger{% endif %}">
       <div class="card-header">
         <div class="row">
           <div class="col-8">
-            <strong>Answers</strong>
+            <strong>Key Words</strong>
           </div>
           <div class="col-2">
             <strong>Correct?</strong>
