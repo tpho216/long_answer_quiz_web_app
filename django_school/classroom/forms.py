@@ -53,6 +53,13 @@ class QuestionForm(forms.ModelForm):
         model = Question
         fields = ('text', )
 
+class ModelAnswerForm(forms.ModelForm):
+   class Meta:       
+       model = Answer    
+       fields = ['text',]
+       # Creating a form to add an article.
+form = ModelAnswerForm()
+
 
 class BaseAnswerInlineFormSet(forms.BaseInlineFormSet):
     def clean(self):
