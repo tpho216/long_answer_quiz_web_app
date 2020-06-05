@@ -57,8 +57,7 @@ class ModelAnswerForm(forms.ModelForm):
    class Meta:       
        model = Answer    
        fields = ['text',]
-       # Creating a form to add an article.
-form = ModelAnswerForm()
+      
 
 
 class BaseAnswerInlineFormSet(forms.BaseInlineFormSet):
